@@ -1,0 +1,36 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<div class="container">
+		<a class="navbar-brand" href="#/">Book My Show</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="#/">Home </a></li>
+				<li class="nav-item active"><a class="nav-link" href="#/login">Login
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#/register">Register</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<h1>Login</h1>
+
+	<div ng-show="model.error" class="alert alert-danger" role="alert">
+		{{model.error}}</div>
+
+	<input ng-model="user.username" class="form-control"
+		placeholder="username" /> <input ng-model="user.password"
+		class="form-control" type="password" placeholder="password" /> <a
+		class="btn btn-primary btn-block" ng-click="model.login(user)">
+		Login </a> <a class="btn btn-success btn-block" href="#/register">
+		Register </a>
+
+</div>

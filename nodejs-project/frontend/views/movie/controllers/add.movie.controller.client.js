@@ -25,8 +25,6 @@
 		function showMovies() {
 			var promise = MovieService.findAllMovies();
 			promise.success(function(results) {
-				console.log("Got Movies");
-				console.log(JSON.stringify(results));
 				var movies = results.results;
 				$scope.items = movies;
 				$scope.items2 = movies;
@@ -70,7 +68,7 @@
 					function(results) {
 						console.log(JSON.stringify(results));
 						var trailers = results.results;
-						if(trailers && trailers.length>0 ){
+						if(trailers && trailers.length>0){
 							var trailerUrl = "https://www.youtube.com/embed/"
 									+ trailers[0].key;
 							var poster = "http://image.tmdb.org/t/p/w500"

@@ -25,8 +25,9 @@
 *.tar.gz
 *.rar
 
-.metadata
+.metadata/
 bin/
+node_modules/
 tmp/
 target/
 data/

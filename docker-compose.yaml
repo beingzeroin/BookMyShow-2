@@ -19,10 +19,10 @@ services:
         ports:
             - 8000:8080
 
-    bookmyshow:
-        build: ./Project
-        environment:
-            MYSQL_SERVERNAME: mysql
-            MYSQL_DATABASENAME: mysql
-            MYSQL_USERNAME: root
-            MYSQL_PASSWORD: beingzero
+    # bookmyshow:
+    #     build: ./Project
+    #     environment:
+    #         MYSQL_SERVERNAME: mysql
+    #         MYSQL_DATABASENAME: mysql
+    #         MYSQL_USERNAME: root
+    #         MYSQL_PASSWORD: beingzero
