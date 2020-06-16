@@ -14,6 +14,8 @@
 		init();
 
 		function login(user) {
+			var loginUser = {id: 'sandy'};
+			$location.url('/user/' + loginUser.id);
 			var promise = UserService.findUserByCredentials(user.username,
 					user.password);
 			promise.success(function(response) {
@@ -29,6 +31,9 @@
 		}
 		
 		function checkTheaterOwner(user){
+			var loginUser = {id: 'sandy'};
+			$location.url('/theatreOwner/'+ loginUser.id +'/profile/');
+
 			var promise = TheatreOwnerService.findTheatreOwnerByCredentials(user.username,
 					user.password);
 			promise.success(function(response) {
