@@ -16,46 +16,50 @@ import java.util.Optional;
 @RestController
 public class ReviewService {
 
-    @Autowired
-    ReviewRepository reviewRepository;
+    // @Autowired
+    // ReviewRepository reviewRepository;
 
-    @Autowired
-    MovieRepository movieRepository;
+    // @Autowired
+    // MovieRepository movieRepository;
 
-    @Autowired
-    UserRepository userRepository;
+    // @Autowired
+    // UserRepository userRepository;
 
-    @Autowired
-    TheatreRepository theatreRepository;
+    // @Autowired
+    // TheatreRepository theatreRepository;
 
     @PostMapping("/api/user/{userId}/movie/{movieId}")
     public Review createReview(@RequestBody Review review, @PathVariable("movieId") int mid, @PathVariable("userId") int uid) {
-        Optional<Movie> movie =movieRepository.findById(mid);
-        Optional<User> user =userRepository.findById(uid);
-        review.setMovie(movie.get());
-        review.setUser(user.get());
-        movie.get().getReviews().add(review);
-        user.get().getReviews().add(review);
-        return reviewRepository.save(review);
+        // Optional<Movie> movie =movieRepository.findById(mid);
+        // Optional<User> user =userRepository.findById(uid);
+        // review.setMovie(movie.get());
+        // review.setUser(user.get());
+        // movie.get().getReviews().add(review);
+        // user.get().getReviews().add(review);
+        // return reviewRepository.save(review);
+        return null;
     }
 
     @PostMapping("/api/user/{userId}/theatre/{theatreId}")
     public Review createReviewTheatre(@RequestBody Review review, @PathVariable("theatreId") int tid, @PathVariable("userId") int uid) {
-        Optional<Theatre> theatre =theatreRepository.findById(tid);
-        Optional<User> user =userRepository.findById(uid);
-        review.setTheatre(theatre.get());
-        review.setUser(user.get());
-        theatre.get().getReviews().add(review);
-        user.get().getReviews().add(review);
-        return reviewRepository.save(review);
+        // Optional<Theatre> theatre =theatreRepository.findById(tid);
+        // Optional<User> user =userRepository.findById(uid);
+        // review.setTheatre(theatre.get());
+        // review.setUser(user.get());
+        // theatre.get().getReviews().add(review);
+        // user.get().getReviews().add(review);
+        // return reviewRepository.save(review);
+        return null;
     }
 
     @DeleteMapping("/api/review/{reviewId}")
-    public void deleteReview(@PathVariable("reviewId") int reviewId) { reviewRepository.deleteById(reviewId);
+    public void deleteReview(@PathVariable("reviewId") int reviewId) { 
+        //reviewRepository.deleteById(reviewId);
     }
 
     @GetMapping("/api/reviews/getAll")
     public Iterable<Review> findAllReviews() {
-        return reviewRepository.findAll();
+        //return reviewRepository.findAll();
+        return null;
     }
 }

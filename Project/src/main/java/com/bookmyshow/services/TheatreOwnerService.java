@@ -21,76 +21,81 @@ import com.bookmyshow.repositories.TheatreRepository;
 
 @RestController
 public class TheatreOwnerService {
-    @Autowired
-    TheatreOwnerRepository theatreOwnerRepository;
+    // @Autowired
+    // TheatreOwnerRepository theatreOwnerRepository;
 
-    @Autowired
-    TheatreRepository theatreRepository;
+    // @Autowired
+    // TheatreRepository theatreRepository;
     
-    @Autowired
-    AddressRepository addressRepository;
+    // @Autowired
+    // AddressRepository addressRepository;
 
     @GetMapping("/api/theatreOwner")
     public Iterable<TheatreOwner> findAllThareOwners(@RequestParam(name = "username", required = false) String username,
                                                @RequestParam(name = "password", required = false) String password) {
-        if (username != null && password != null) {
-            return theatreOwnerRepository.findTheatreOwnerByCredentials(username, password);
-        } else if (username != null) {
-            return theatreOwnerRepository.findTheatreOwnerByUsername(username);
-        }
-        return theatreOwnerRepository.findAll();
+        // if (username != null && password != null) {
+        //     return theatreOwnerRepository.findTheatreOwnerByCredentials(username, password);
+        // } else if (username != null) {
+        //     return theatreOwnerRepository.findTheatreOwnerByUsername(username);
+        // }
+        // return theatreOwnerRepository.findAll();
+        return  null;
     }
 
     @PostMapping("/api/theatreOwner")
     public TheatreOwner createThatreOwner(@RequestBody TheatreOwner theatreOwner) {
-        return theatreOwnerRepository.save(theatreOwner);
+        //return theatreOwnerRepository.save(theatreOwner);
+        return null;
     }
 
     @GetMapping("/api/theatreOwner/{theatreOwnerId}")
     public Optional<TheatreOwner> findTheatreOwnerById(@PathVariable("theatreOwnerId") int id) {
-        return theatreOwnerRepository.findById(id);
+        //return theatreOwnerRepository.findById(id);
+        return null;
     }
 
     @GetMapping("/api/theatreOwner/{theatreOwnerId}/getTheatres")
     public List<Theatre> getAllTheatres(@PathVariable("theatreOwnerId") int id) {
-        Optional<TheatreOwner> theatreOwner = theatreOwnerRepository.findById(id);
-        return theatreOwner.get().getTheatres();
+        //Optional<TheatreOwner> theatreOwner = theatreOwnerRepository.findById(id);
+        //return theatreOwner.get().getTheatres();
+        return null;
 
     }
 
     @DeleteMapping("/api/theatreOwner/{theatreOwnerId}")
     public void deleteTheatreOwner(@PathVariable("theatreOwnerId") int id) {
-        theatreOwnerRepository.deleteById(id);
+        //theatreOwnerRepository.deleteById(id);
     }
 
     @PutMapping("/api/theatreOwner/{theatreOwnerId}")
     public TheatreOwner updateTheatreOwner(@PathVariable("theatreOwnerId") int id, @RequestBody TheatreOwner newTheatreOwner) {
-    	Optional<TheatreOwner> owner = theatreOwnerRepository.findById(id);
-    	owner.get().set(newTheatreOwner);
-        return theatreOwnerRepository.save(owner.get());
+    	// Optional<TheatreOwner> owner = theatreOwnerRepository.findById(id);
+    	// owner.get().set(newTheatreOwner);
+        // return theatreOwnerRepository.save(owner.get());
+        return null;
     }
 
     @PutMapping("/api/theatreOwner/{toId}/theatre/{tId}")
     public void theatreOwned(@PathVariable("toId") int toId, @PathVariable("tId") int tId) {
-        Optional<TheatreOwner> theatreOwner = theatreOwnerRepository.findById(toId);
-        Optional<Theatre> theatre   = theatreRepository.findById(tId);
-        theatreOwner.get().setTheatres(theatre.get());
-        theatreOwner.get().setNoOfTheatres(theatreOwner.get().getNoOfTheatres()+ 1);
-        theatreOwnerRepository.save(theatreOwner.get());
+        // Optional<TheatreOwner> theatreOwner = theatreOwnerRepository.findById(toId);
+        // Optional<Theatre> theatre   = theatreRepository.findById(tId);
+        // theatreOwner.get().setTheatres(theatre.get());
+        // theatreOwner.get().setNoOfTheatres(theatreOwner.get().getNoOfTheatres()+ 1);
+        // theatreOwnerRepository.save(theatreOwner.get());
     }
 
     @DeleteMapping("/api/theatreOwner/{theatreOwnerId}/theatre/{theatreId}")
     public void deleteTheatreForTheatreOwner(@PathVariable("theatreOwnerId") int theatreOwnerId,@PathVariable("theatreId") int theatreId) {
-        Optional<TheatreOwner> theatreOwner = theatreOwnerRepository.findById(theatreOwnerId);
-        Optional<Theatre> theatre   = theatreRepository.findById(theatreId);
-        List<Theatre> theatres= theatreOwner.get().getTheatres();
-        for (Theatre th: theatres) {
-            if(th.getId()== theatreId){
-                theatres.remove(theatre.get());
-            }
-        }
-        theatreOwner.get().setNoOfTheatres(theatreOwner.get().getNoOfTheatres()- 1);
-        theatreOwnerRepository.save(theatreOwner.get());
+        // Optional<TheatreOwner> theatreOwner = theatreOwnerRepository.findById(theatreOwnerId);
+        // Optional<Theatre> theatre   = theatreRepository.findById(theatreId);
+        // List<Theatre> theatres= theatreOwner.get().getTheatres();
+        // for (Theatre th: theatres) {
+        //     if(th.getId()== theatreId){
+        //         theatres.remove(theatre.get());
+        //     }
+        // }
+        // theatreOwner.get().setNoOfTheatres(theatreOwner.get().getNoOfTheatres()- 1);
+        // theatreOwnerRepository.save(theatreOwner.get());
     }
 
 }

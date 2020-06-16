@@ -10,18 +10,19 @@ import com.bookmyshow.repositories.AdminRepository;
 
 @RestController
 public class AdminService {
-    @Autowired
-    AdminRepository adminRepository;
+    // @Autowired
+    // AdminRepository adminRepository;
 
     @GetMapping("/api/admin")
     public Iterable<Admin> findAllThareOwners(@RequestParam(name = "username", required = false) String username,
                                                @RequestParam(name = "password", required = false) String password) {
-        if (username != null && password != null) {
-            return adminRepository.findAdminByCredentials(username, password);
-        } else if (username != null) {
-            return adminRepository.findAdminByUsername(username);
-        }
-        return adminRepository.findAll();
+        // if (username != null && password != null) {
+        //     return adminRepository.findAdminByCredentials(username, password);
+        // } else if (username != null) {
+        //     return adminRepository.findAdminByUsername(username);
+        // }
+        // return adminRepository.findAll();
+        return null;
     }
 
 }

@@ -12,13 +12,14 @@ import com.bookmyshow.repositories.MovieTicketRepository;
 
 @RestController
 public class MovieTicketService {
-	@Autowired
-	MovieTicketRepository movieTicketRepository;
+	// @Autowired
+	// MovieTicketRepository movieTicketRepository;
 	
 
 	@GetMapping("/api/ticket/{ticketId}")
 	public Optional<MovieTicket> createMovie(@PathVariable("ticketId") int id) {
-		return movieTicketRepository.findById(id);
+		//return movieTicketRepository.findById(id);
+		return null;
 	}
 	
 }

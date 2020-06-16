@@ -20,15 +20,16 @@ import com.bookmyshow.repositories.TheatreRepository;
 
 @RestController
 public class TheatreService {
-    @Autowired
-    TheatreRepository theatreRepository;
+    // @Autowired
+    // TheatreRepository theatreRepository;
 
-    @Autowired
-    TheatreOwnerRepository theatreOwnerRepository;
+    // @Autowired
+    // TheatreOwnerRepository theatreOwnerRepository;
 
     @GetMapping("/api/theatre")
     public Iterable<Theatre> findAllTheatres() {
-        return theatreRepository.findAll();
+        //return theatreRepository.findAll();
+        return null;
     }
 
 //    @GetMapping("/api/theatre")
@@ -39,34 +40,38 @@ public class TheatreService {
 
     @PostMapping("/api/{theatreOwnerId}/theatre")
     public Theatre createTheatre(@RequestBody Theatre theatre, @PathVariable("theatreOwnerId") int id) {
-        Optional<TheatreOwner> theatreOwner =theatreOwnerRepository.findById(id);
-        theatre.setTheatreOwner(theatreOwner.get());
-        theatreOwner.get().setNoOfTheatres(theatreOwner.get().getNoOfTheatres()+ 1);
-        return theatreRepository.save(theatre);
+        // Optional<TheatreOwner> theatreOwner =theatreOwnerRepository.findById(id);
+        // theatre.setTheatreOwner(theatreOwner.get());
+        // theatreOwner.get().setNoOfTheatres(theatreOwner.get().getNoOfTheatres()+ 1);
+        // return theatreRepository.save(theatre);
+        return null;
     }
 
     @GetMapping("/api/theatre/{theatreId}")
     public Optional<Theatre> findTheatreById(@PathVariable("theatreId") int id) {
-        return theatreRepository.findById(id);
+        //return theatreRepository.findById(id);
+        return null;
     }
 
     @DeleteMapping("/api/theatre/{theatreId}")
     public void deleteTheatre(@PathVariable("theatreId") int theatreId) {
-        theatreRepository.deleteById(theatreId);
+        //theatreRepository.deleteById(theatreId);
     }
 
     @PutMapping("/api/theatre/{theatreId}")
     public Theatre updateTheatre(@PathVariable("theatreId") int id, @RequestBody Theatre newTheatre) {
-    	Optional<Theatre> theatre = theatreRepository.findById(id);
-        theatre.get().set(newTheatre);
-        return theatreRepository.save(theatre.get());
+    	// Optional<Theatre> theatre = theatreRepository.findById(id);
+        // theatre.get().set(newTheatre);
+        // return theatreRepository.save(theatre.get());
+        return null;
     }
 
 
     @GetMapping("/api/theatre/{theatreId}/getReviews")
     public List<Review> getAllReviews(@PathVariable("theatreId") int id) {
-        Optional<Theatre> theatre = theatreRepository.findById(id);
-        return theatre.get().getReviews();
+        // Optional<Theatre> theatre = theatreRepository.findById(id);
+        // return theatre.get().getReviews();
+        return null;
     }
 
 

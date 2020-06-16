@@ -19,10 +19,10 @@ import java.util.Optional;
 
 @RestController
 public class MovieService {
-	@Autowired
-	MovieRepository movieRepository;
-	@Autowired
-	TheatreRepository thRepository;
+	// @Autowired
+	// MovieRepository movieRepository;
+	// @Autowired
+	// TheatreRepository thRepository;
 
 	// @GetMapping("/api/movies")
 	// public Iterable<User> findAllUsers() {
@@ -36,26 +36,29 @@ public class MovieService {
 
 	@PostMapping("/api/movie")
 	public Movie createMovie(@RequestBody Movie movie) {
-		return movieRepository.save(movie);
+		return new Movie();
+		//return movieRepository.save(movie);
 	}
 
 	@GetMapping("/api/movie")
 	public Iterable<Movie> findAllMovies(@RequestParam(name = "title", required = false) String title) {
-		if (title != null) {
-			return movieRepository.findMovieByMovieName(title);
-		}
-		return movieRepository.findAll();
+		// if (title != null) {
+		// 	return movieRepository.findMovieByMovieName(title);
+		// }
+		// return movieRepository.findAll();
+		return null;
 	}
 
 	@DeleteMapping("/api/movie/{movieId}")
 	public void deleteMovie(@PathVariable("movieId") int movieId) {
-		movieRepository.deleteById(movieId);
+		//movieRepository.deleteById(movieId);
+	
 	}
 
 	@GetMapping("/api/movie/{movieId}/getReviews")
 	public List<Review> getAllReviews(@PathVariable("movieId") int id) {
-		Optional<Movie> movie = movieRepository.findById(id);
-		return movie.get().getReviews();
-
+		// Optional<Movie> movie = movieRepository.findById(id);
+		// return movie.get().getReviews();
+		return null;
 	}
 }

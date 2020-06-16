@@ -33,86 +33,89 @@ import com.bookmyshow.repositories.UserRepository;
 
 @RestController
 public class MovieShowService {
-	@Autowired
-	MovieShowRepository movieShowRepository;
-	@Autowired
-	TheatreRepository theaterRepository;
-	@Autowired
-	MovieRepository movieRepository;
-	@Autowired
-	MovieTicketRepository movieTicketRepository;
-	@Autowired
-	UserRepository userRepository;
+	// @Autowired
+	// MovieShowRepository movieShowRepository;
+	// @Autowired
+	// TheatreRepository theaterRepository;
+	// @Autowired
+	// MovieRepository movieRepository;
+	// @Autowired
+	// MovieTicketRepository movieTicketRepository;
+	// @Autowired
+	// UserRepository userRepository;
 
 	@GetMapping("/api/movie/{movieId}/movieshow/{date}")
 	public Set<Theatre> findMovieShowsForAMovie(@PathVariable("movieId") int movieId,
 			@PathVariable("date") String selectedDate) {
 		Set<Theatre> theatres = new HashSet<>();
-		Optional<Movie> movie = movieRepository.findById(movieId);
-		List<MovieShow> movieShows = (List<MovieShow>) movieShowRepository
-				.findMovieShowsByMovieAndDate(movie.get().getTitle(), selectedDate);
-		for (MovieShow show : movieShows) {
-			theatres.add(show.getTheatre());
-		}
+		// Optional<Movie> movie = movieRepository.findById(movieId);
+		// List<MovieShow> movieShows = (List<MovieShow>) movieShowRepository
+		// 		.findMovieShowsByMovieAndDate(movie.get().getTitle(), selectedDate);
+		// for (MovieShow show : movieShows) {
+		// 	theatres.add(show.getTheatre());
+		// }
 		return theatres;
 	}
 	
 	@GetMapping("/api/movieshow/{movieShowId}")
 	public Optional<MovieShow> getMovieShowsDetails(@PathVariable("movieShowId") int movieShowId) {
-		return movieShowRepository.findById(movieShowId);
+		//return movieShowRepository.findById(movieShowId);
+		return null;
 	}
 	
 	@PostMapping("/api/user/{userId}/movieshow/{movieShowId}")
 	public MovieTicket bookMovieShow(@PathVariable("userId") int userId, @PathVariable("movieShowId") int movieShowId, 
 			@RequestBody MovieTicket movieTicket) {
-		Optional<User> user = userRepository.findById(userId);
-		if((user.get().getWallet()-movieTicket.getSeatsBooked().length) <= 0) {
-			user.get().setWallet(0);
-			userRepository.save(user.get());
-			return null;
-		}
-		user.get().setWallet(user.get().getWallet()-movieTicket.getSeatsBooked().length);
-		userRepository.save(user.get());
-		Optional<MovieShow> movieShow = movieShowRepository.findById(movieShowId);
-		if(null == movieShow.get().getSeatsBooked()) {
-			movieShow.get().setSeatsBooked(movieTicket.getSeatsBooked());
-		}
-		else {
-			movieShow.get().setSeatsBooked(Stream.of(movieShow.get().getSeatsBooked(), movieTicket.getSeatsBooked()).flatMap(Stream::of).toArray(String[]::new));	
-		}
-		movieTicket.setUser(user.get());
-		movieTicket.setMovieShow(movieShow.get());
-		return movieTicketRepository.save(movieTicket);
+		// Optional<User> user = userRepository.findById(userId);
+		// if((user.get().getWallet()-movieTicket.getSeatsBooked().length) <= 0) {
+		// 	user.get().setWallet(0);
+		// 	userRepository.save(user.get());
+		// 	return null;
+		// }
+		// user.get().setWallet(user.get().getWallet()-movieTicket.getSeatsBooked().length);
+		// userRepository.save(user.get());
+		// Optional<MovieShow> movieShow = movieShowRepository.findById(movieShowId);
+		// if(null == movieShow.get().getSeatsBooked()) {
+		// 	movieShow.get().setSeatsBooked(movieTicket.getSeatsBooked());
+		// }
+		// else {
+		// 	movieShow.get().setSeatsBooked(Stream.of(movieShow.get().getSeatsBooked(), movieTicket.getSeatsBooked()).flatMap(Stream::of).toArray(String[]::new));	
+		// }
+		// movieTicket.setUser(user.get());
+		// movieTicket.setMovieShow(movieShow.get());
+		// return movieTicketRepository.save(movieTicket);
+		return null;
 	}
 
 	@GetMapping("/api/movie/{movieId}/theatre/{theatreId}/date/{date}/time/{time}")
 	public MovieShow getMovieShow(@PathVariable("movieId") int movieId, @PathVariable("theatreId") int theatreId,
 			@PathVariable("date") String selectedDate, @PathVariable("time") String selectedTime) {
 		MovieShow result = null;
-		Optional<Movie> movie = movieRepository.findById(movieId);
-		Optional<Theatre> theatre = theaterRepository.findById(theatreId);
-		List<MovieShow> movieShows = (List<MovieShow>) movieShowRepository.findOne(movie.get().getTitle(),
-				theatre.get().getName(), selectedDate, selectedTime);
-		if (!movieShows.isEmpty()) {
-			result = movieShows.get(0);
-		}
+		// Optional<Movie> movie = movieRepository.findById(movieId);
+		// Optional<Theatre> theatre = theaterRepository.findById(theatreId);
+		// List<MovieShow> movieShows = (List<MovieShow>) movieShowRepository.findOne(movie.get().getTitle(),
+		// 		theatre.get().getName(), selectedDate, selectedTime);
+		// if (!movieShows.isEmpty()) {
+		// 	result = movieShows.get(0);
+		// }
 		return result;
 	}
 
 	@PostMapping("/api/movie/{movieId}/theatre/{theatreId}/movieshow")
 	public List<MovieShow> createMovieShows(@PathVariable("movieId") int movieId,
 			@PathVariable("theatreId") int theatreId) throws ParseException {
-		Optional<Movie> movie = movieRepository.findById(movieId);
-		Optional<Theatre> theater = theaterRepository.findById(theatreId);
-		Movie movieObj = movie.get();
-		Theatre theatreObj = theater.get();
-		List<MovieShow> movieShows = (List<MovieShow>) movieShowRepository
-				.findMovieShowsByTheatreAndMovie(theatreObj.getName(), movieObj.getTitle());
-		if (!movieShows.isEmpty()) {
-			return movieShows;
-		}
-		createMovieShows(movieObj, theatreObj);
-		return movieShows;
+		// Optional<Movie> movie = movieRepository.findById(movieId);
+		// Optional<Theatre> theater = theaterRepository.findById(theatreId);
+		// Movie movieObj = movie.get();
+		// Theatre theatreObj = theater.get();
+		// List<MovieShow> movieShows = (List<MovieShow>) movieShowRepository
+		// 		.findMovieShowsByTheatreAndMovie(theatreObj.getName(), movieObj.getTitle());
+		// if (!movieShows.isEmpty()) {
+		// 	return movieShows;
+		// }
+		// createMovieShows(movieObj, theatreObj);
+		// return movieShows;
+		return null;
 	}
 
 	private void createMovieShows(Movie movie, Theatre theatre) throws ParseException {
@@ -124,16 +127,16 @@ public class MovieShowService {
 		for (LocalDate date = start; date.isBefore(end); date = date.plusDays(1)) {
 			show = new MovieShow(movie.getTitle(), 1, theatre.getName(), theatre.getLocation(), date.toString(),
 					"9", movie, theatre);
-			movieShowRepository.save(show);
+			//movieShowRepository.save(show);
 			show = new MovieShow(movie.getTitle(), 1, theatre.getName(), theatre.getLocation(), date.toString(),
 					"12", movie, theatre);
-			movieShowRepository.save(show);
+			//movieShowRepository.save(show);
 			show = new MovieShow(movie.getTitle(), 1, theatre.getName(), theatre.getLocation(), date.toString(),
 					"3", movie, theatre);
-			movieShowRepository.save(show);
+			//movieShowRepository.save(show);
 			show = new MovieShow(movie.getTitle(), 1, theatre.getName(), theatre.getLocation(), date.toString(),
 					"6", movie, theatre);
-			movieShowRepository.save(show);
+			//movieShowRepository.save(show);
 		}
 	}
 
@@ -148,28 +151,28 @@ public class MovieShowService {
 	@GetMapping("/api/theatre/{theatreId}/movie")
 	public Set<Movie> findAllMoviesForTheatre(@PathVariable("theatreId") int theatreId) {
 		Set<Movie> movies = new HashSet<>();
-		Optional<Theatre> theater = theaterRepository.findById(theatreId);
-		List<MovieShow> movieShows = (List<MovieShow>) movieShowRepository
-				.findMovieShowsByTheatre(theater.get().getName());
-		for (MovieShow ms : movieShows) {
-			movies.add(ms.getMovie());
-		}
+		// Optional<Theatre> theater = theaterRepository.findById(theatreId);
+		// List<MovieShow> movieShows = (List<MovieShow>) movieShowRepository
+		// 		.findMovieShowsByTheatre(theater.get().getName());
+		// for (MovieShow ms : movieShows) {
+		// 	movies.add(ms.getMovie());
+		// }
 		return movies;
 	}
 
 	@DeleteMapping("/api/theatre/{theatreId}/movie/{movieId}")
 	public void findUserById(@PathVariable("theatreId") int theatreId, @PathVariable("movieId") int movieId) {
-		Optional<Movie> movie = movieRepository.findById(movieId);
-		Optional<Theatre> theater = theaterRepository.findById(theatreId);
-		Movie movieObj = movie.get();
-		Theatre theatreObj = theater.get();
-		List<MovieShow> movieShows = (List<MovieShow>) movieShowRepository
-				.findMovieShowsByTheatreAndMovie(theatreObj.getName(), movieObj.getTitle());
-		for (MovieShow ms : movieShows) {
-			movieShowRepository.delete(ms);
-		}
-		if(movie.get().getMovieShows().isEmpty())
-			movieRepository.deleteById(movieId);
+		// Optional<Movie> movie = movieRepository.findById(movieId);
+		// Optional<Theatre> theater = theaterRepository.findById(theatreId);
+		// Movie movieObj = movie.get();
+		// Theatre theatreObj = theater.get();
+		// List<MovieShow> movieShows = (List<MovieShow>) movieShowRepository
+		// 		.findMovieShowsByTheatreAndMovie(theatreObj.getName(), movieObj.getTitle());
+		// for (MovieShow ms : movieShows) {
+		// 	movieShowRepository.delete(ms);
+		// }
+		// if(movie.get().getMovieShows().isEmpty())
+		// 	movieRepository.deleteById(movieId);
 	}
 
 }

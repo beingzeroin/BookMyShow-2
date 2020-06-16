@@ -1,0 +1,28 @@
+version: '3.1'
+
+# Thil is all in one file
+services:
+    mysql:
+        image: mysql
+        command: --init-file /application/database/seed/mysql-init.sql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: beingzero
+        ports:
+            - 3306:3306
+        volumes:
+            - ./database/seed/mysql-init.sql:/application/database/seed/mysql-init.sql:ro
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8000:8080
+
+    bookmyshow:
+        build: ./Project
+        environment:
+            MYSQL_SERVERNAME: mysql
+            MYSQL_DATABASENAME: mysql
+            MYSQL_USERNAME: root
+            MYSQL_PASSWORD: beingzero
